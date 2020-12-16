@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: [:show, :edit]
   before_action :move_to_index, except: [:index, :show]
+
   def index
     @tweets = Tweet.all
   end
@@ -13,11 +15,11 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    @comment = Comment.new
+    @comments = @tweet.comments.all
   end
 
   def edit
-    @tweet = Tweet.find(params[:id])
   end
 
   def update
@@ -31,8 +33,13 @@ class TweetsController < ApplicationController
   end
 
   private
+  
   def tweet_params
     params.require(:tweet).permit(:name, :image, :text)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 
   def move_to_index
