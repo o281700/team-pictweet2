@@ -1,0 +1,11 @@
+<div class="contents row">
+  <div class="container">
+    <h3>投稿するページ</h3>
+    <%= form_with(model: @tweet, local: true) do |form| %>
+      <%= form.text_field :name, placeholder: "名前を記入してください" %>
+      <%= form.text_field :image, placeholder: "写真の Url" %>
+      <%= form.text_area :text, placeholder: "text", rows: "10" %>
+      <%= form.submit "投稿する" %>
+    <% end %>
+  </div>
+</div>
