@@ -19,6 +19,10 @@ class TweetsController < ApplicationController
     @comments = @tweet.comments.all
   end
 
+  def search
+    @tweets = Tweet.search(params[:keyword])
+  end
+
   def edit
   end
 
